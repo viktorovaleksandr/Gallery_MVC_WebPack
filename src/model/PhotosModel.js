@@ -1,8 +1,8 @@
 export class PhotosModel {
 	
-	async getPhotos(id) {
+async getPhotos(id) {
     return fetch(`https://jsonplaceholder.typicode.com/photos?albumId=${id}`)
-    .then((response) =>   response.json())
-    .then((photos) => photos);
+    	.then((response) =>   response.json())
+    	.then((photos) => photos);
   }
 }
