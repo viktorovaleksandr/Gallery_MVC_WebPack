@@ -1,4 +1,5 @@
 import $ from 'jquery';
+
 import {GalleryView} from '../view/GalleryView.js';
 import {AlbumsView} from '../view/AlbumsView.js';
 import {PhotosView} from '../view/PhotosView.js';
@@ -9,18 +10,11 @@ export class GalleryController {
 	constructor() {
 		this.galleryView = new GalleryView();
 		this.albumsView = new AlbumsView({
-			showAlbumPhotos: (id) => this.showAlbumPhotos(id)
+			showNewAlbumPhotos: (id) => this.showNewAlbumPhotos(id)
 		});
 		this.photosView = new PhotosView();
 		this.albumsModel = new AlbumsModel();
 		this.photosModel = new PhotosModel();
-
-		const $app = $('#app');
-		$app.append(this.galleryView.$gallery);
-
-		const $galleryContainer = $('.container');
-		$galleryContainer.append(this.albumsView.$list);
-		$galleryContainer.append(this.photosView.$photo);
 
       this.init();
 	}
@@ -31,10 +25,11 @@ export class GalleryController {
 
 		const photos = await this.photosModel.getPhotos(albums[0].id);
 		this.photosView.renderPhotos(photos);
+
+		this.albumsView.onClickAlbumItem();
 	}
 
-	async showAlbumPhotos(id) {
-		this.photosView.$photo.empty();
+	async showNewAlbumPhotos(id) {
 		const photos = await this.photosModel.getPhotos(id);
 		this.photosView.renderPhotos(photos);
 	}

@@ -2,13 +2,7 @@ import $ from 'jquery';
 
 export class PhotosView {
 	constructor() {
-		this.$photo = this.generateGalleryPhotos();
-	}
-
-	generateGalleryPhotos() {
-		return $(`
-			<div class="js-gallery-photo card-body col-sm-6 col-md-4"></div>
-		`);
+		this.$galleryPhotos = $('.js-gallery-photos');
 	}
 
 	generatePhoto(photo) {
@@ -16,7 +10,8 @@ export class PhotosView {
 	}
 
 	renderPhotos(photos) {
+		this.$galleryPhotos.empty();
 		const photoHtml = photos.map(this.generatePhoto);
-		this.$photo.prepend(photoHtml);
+		this.$galleryPhotos.prepend(photoHtml);
 	}
 }
