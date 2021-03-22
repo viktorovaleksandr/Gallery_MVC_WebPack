@@ -4,6 +4,7 @@ export class AlbumsView {
 	constructor(config) {
 		this.$galleryAlbums = $('.js-gallery-albums');
 		this.config = config;
+		this.addAlbumClickEventListener();
 	}
 
 	generateAlbum(album) {	
@@ -17,10 +18,10 @@ export class AlbumsView {
 		this.$galleryAlbums.prepend(albumsHtml);
 	}
 
-	onClickAlbumItem() {
+	addAlbumClickEventListener() {
 		this.$galleryAlbums.click((event) => {
 			const id = $(event.target).data('id');
-			this.config.showNewAlbumPhotos(id);
+			this.config.showAlbumPhotos(id);
 		});
 	}
 }
