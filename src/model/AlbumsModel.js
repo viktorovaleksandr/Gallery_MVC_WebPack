@@ -1,5 +1,4 @@
 export class AlbumsModel {
-
   constructor() {
 		this.albums = [];
   }
